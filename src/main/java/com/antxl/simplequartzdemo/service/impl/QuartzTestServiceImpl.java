@@ -14,6 +14,14 @@ import org.springframework.stereotype.Service;
 class QuartzTestServiceImpl implements QuartzTestService {
     private Scheduler testScheduler;
 
+    public void addGlobalItem(String item){
+        try {
+            testScheduler.getContext().put(QuartzConfiguration.GLOBAL_TEST_KEY, item);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void pauseTimelyTask() {
         JobKey key = new JobKey(QuartzConfiguration.TIMELY_JOB_KEY);
