@@ -32,7 +32,7 @@ public class QuartzConfiguration {
 
     @Bean("timelyJobTrigger")
     public Trigger getTimelyTrigger(){
-        ScheduleBuilder<CronTrigger> scheduleBuilder = CronScheduleBuilder.cronSchedule("0 0-59 * * * ? *")
+        ScheduleBuilder<CronTrigger> scheduleBuilder = CronScheduleBuilder.cronSchedule("0 * * * * ? *")
                 .withMisfireHandlingInstructionDoNothing();
         return TriggerBuilder.newTrigger().forJob(TIMELY_JOB_KEY)
                 .withSchedule(scheduleBuilder)
@@ -42,7 +42,7 @@ public class QuartzConfiguration {
 
     @Bean("contextJobTrigger")
     public Trigger getContextTestTrigger(){
-        ScheduleBuilder<CronTrigger> scheduleBuilder = CronScheduleBuilder.cronSchedule("1 0-59 * * * ? *")
+        ScheduleBuilder<CronTrigger> scheduleBuilder = CronScheduleBuilder.cronSchedule("1 * * * * ? *")
                 .withMisfireHandlingInstructionDoNothing();
         return TriggerBuilder.newTrigger().forJob(CONTEXT_JOB_KEY)
                 .withSchedule(scheduleBuilder)
